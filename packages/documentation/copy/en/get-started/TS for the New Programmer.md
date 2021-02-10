@@ -8,26 +8,26 @@ oneline: Learn TypeScript from scratch
 
 Congratulations on choosing TypeScript as one of your first languages — you're already making good decisions!
 
-You've probably already heard that TypeScript is a "flavor" or "variant" of JavaScript.
+You've probably heard that TypeScript is a "flavor" or "variant" of JavaScript.
 The relationship between TypeScript (TS) and JavaScript (JS) is rather unique among modern programming languages, so learning more about this relationship will help you understand how TypeScript adds to JavaScript.
 
 ## What is JavaScript? A Brief History
 
-JavaScript (also known as ECMAScript) started its life as a simple scripting language for browsers.
-At the time it was invented, it was expected to be used for short snippets of code embedded in a web page — writing more than a few dozen lines of code would have been somewhat unusual.
+JavaScript (also known as ECMAScript) started life as a simple scripting language for browsers.
+It was intended to be used only for short snippets of code embedded in a web page — writing more than a few dozen lines of code would have been somewhat unusual.
 Due to this, early web browsers executed such code pretty slowly.
 Over time, though, JS became more and more popular, and web developers started using it to create interactive experiences.
 
-Web browser developers responded to this increased JS usage by optimizing their execution engines (dynamic compilation) and extending what could be done with it (adding APIs), which in turn made web developers use it even more.
-On modern websites, your browser is frequently running applications that span hundreds of thousands of lines of code.
-This is long and gradual growth of "the web", starting as a simple network of static pages, and evolving into a platform for rich _applications_ of all kinds.
+Web browser developers responded to this increased JS usage by optimizing their execution engines (through dynamic compilation) and extending what could be done with the language (by adding APIs), which in turn made web developers use it even more.
+On modern websites, your browser is frequently running applications with hundreds of thousands of lines of code.
+This expansion in the use of JavaScript has mirrored the long and gradual growth of "the web", which started out as a simple network of static pages and evolved into a platform for rich _applications_ of all kinds.
 
-More than this, JS has become popular enough to be used outside the context of browsers, such as implementing JS servers using node.js.
+More than this, JS has become popular enough to be used outside web browsers, such as implementing JS servers using node.js.
 The "run anywhere" nature of JS makes it an attractive choice for cross-platform development.
-There are many developers these days that use _only_ JavaScript to program their entire stack!
+There are many developers that use _only_ JavaScript to program their entire stack!
 
-To summarize, we have a language that was designed for quick uses, and then grew to a full-fledged tool to write applications with millions of lines.
-Every language has its own _quirks_ — oddities and surprises, and JavaScript's humble beginning makes it have _many_ of these. Some examples:
+To summarize, we have a language that was designed for quick uses, and then grew into a full-fledged tool to write applications with millions of lines.
+Every language has its own _quirks_ — oddities and surprises, and JavaScript's humble beginning has left it with _many_ of these. Some examples:
 
 - JavaScript's equality operator (`==`) _coerces_ its arguments, leading to unexpected behavior:
 
@@ -48,8 +48,8 @@ Every language has its own _quirks_ — oddities and surprises, and JavaScript's
   const area = obj.width * obj.heigth;
   ```
 
-Most programming languages would throw an error when these sorts of errors occur, some would do so during compilation — before any code is running.
-When writing small programs, such quirks are annoying but manageable; when writing applications with hundreds or thousands of lines of code, these constant surprises are a serious problem.
+Most programming languages would throw an error when these sorts of errors occur; some would do so during compilation — before any code is running.
+When writing small programs, such quirks are annoying but manageable. When writing applications with hundreds or thousands of lines of code, these constant surprises are a serious problem.
 
 ## TypeScript: A Static Type Checker
 
@@ -57,7 +57,7 @@ We said earlier that some languages wouldn't allow those buggy programs to run a
 Detecting errors in code without running it is referred to as _static checking_.
 Determining what's an error and what's not based on the kinds of values being operated on is known as static _type_ checking.
 
-TypeScript checks a program for errors before execution, and does so based on the _kinds of values_, it's a _static type checker_.
+TypeScript checks a program for errors before execution. It does so based on the _kinds of values_ - it's a _static type checker_.
 For example, the last example above has an error because of the _type_ of `obj`.
 Here's the error TypeScript found:
 
@@ -69,11 +69,11 @@ const area = obj.width * obj.heigth;
 
 ### A Typed Superset of JavaScript
 
-How does TypeScript relate to JavaScript, though?
+But how does TypeScript relate to JavaScript?
 
 #### Syntax
 
-TypeScript is a language that is a _superset_ of JavaScript: JS syntax is therefore legal TS.
+TypeScript is a _superset_ of JavaScript: JS syntax is therefore legal TS.
 Syntax refers to the way we write text to form a program.
 For example, this code has a _syntax_ error because it's missing a `)`:
 
@@ -82,34 +82,34 @@ For example, this code has a _syntax_ error because it's missing a `)`:
 let a = (4
 ```
 
-TypeScript doesn't consider any JavaScript code to be an error because of its syntax.
-This means you can take any working JavaScript code and put it in a TypeScript file without worrying about exactly how it is written.
+TypeScript doesn't consider any JavaScript code wrong just because of its syntax.
+This means you can take any working JavaScript code and put it in a TypeScript file without worrying exactly how it is written.
 
 #### Types
 
-However, TypeScript is a _typed_ superset, meaning that it adds rules about how different kinds of values can be used.
+However, TypeScript is a _typed_ superset, meaning it adds rules about how different kinds of values can be used.
 The earlier error about `obj.heigth` was not a _syntax_ error: it is an error of using some kind of value (a _type_) in an incorrect way.
 
-As another example, this is JavaScript code that you can run in your browser, and it _will_ log a value:
+As another example, this is JavaScript code you can run in your browser which _will_ log a value, though not a meaningful one:
 
 ```js
 console.log(4 / []);
 ```
 
 This syntactically-legal program logs `Infinity`.
-TypeScript, though, considers division of number by an array to be a nonsensical operation, and will issue an error:
+TypeScript, though, helpfully considers division of a number by an array to be a nonsensical operation, and issues an error:
 
 ```ts twoslash
 // @errors: 2363
 console.log(4 / []);
 ```
 
-It's possible you really _did_ intend to divide a number by an array, perhaps just to see what happens, but most of the time, though, this is a programming mistake.
+Now it's possible you really _did_ intend to divide a number by an array, perhaps just to see what happens. But most of the time this is a programming mistake.
 TypeScript's type checker is designed to allow correct programs through while still catching as many common errors as possible.
 (Later, we'll learn about settings you can use to configure how strictly TypeScript checks your code.)
 
 If you move some code from a JavaScript file to a TypeScript file, you might see _type errors_ depending on how the code is written.
-These may be legitimate problems with the code, or TypeScript being overly conservative.
+These may be legitimate problems with the code or just TypeScript being overly conservative.
 Throughout this guide we'll demonstrate how to add various TypeScript syntax to eliminate such errors.
 
 #### Runtime Behavior
